@@ -18,22 +18,6 @@ def check_query_count():
     return
 
 
-# def fetch_raw_contract(code):
-#     contract_current = pd.DataFrame()
-#     # 查询当前可交易的50ETF期权合约信息
-#     df2 = opt.run_query(query(opt.OPT_CONTRACT_INFO).filter((opt.OPT_CONTRACT_INFO.underlying_symbol == code)
-#                                                             & (opt.OPT_CONTRACT_INFO.last_trade_date > datetime.now())))
-#
-#     contract_current['option_code'] = df2['code']  # 期权合约代码
-#     contract_current['trade_code'] = df2['trading_code']  # 合约交易代码
-#     contract_current['call_or_put'] = df2['contract_type']  # 合约认沽认购类型
-#     contract_current['strike_price'] = df2['exercise_price']  # 行权价
-#     contract_current['expire_date'] = df2['expire_date']  # 到期日期
-#     print(get_time(), u'期权', code, u'已下载', len(contract_current), u'个合约，日期截至' +
-#           contract_current['expire_date'][len(contract_current) - 1].strftime('%Y-%m-%d') + '。')
-#     return contract_current
-
-
 def get_contract(code):
     print(get_time(), u'期权合约数据开始下载。')
     contracts_fetch = pd.DataFrame()
@@ -115,8 +99,8 @@ def fetch_shibor(fetch_date):
 
 def main():
     # 身份认证
-    id_jq = '15210623069'
-    pass_jq = '623069'
+    id_jq = ''
+    pass_jq = ''
     auth(id_jq, pass_jq)
 
     # 查询是否连接成功
@@ -163,21 +147,6 @@ def main():
     shibor = fetch_shibor(date_today)
 
     # 计算波动率指数 iVX
-
-
-    # 获取全市场所有期权合约信息
-    # df = get_all_securities(types=['options'], date='2021-01-29')
-    # print(df)
-
-    # 查询最新的调整过的期权基本资料数据（所有）
-    # code = "510050.XSHG"  # 上证50ETF期权代码
-    # df3 = opt.run_query(query(opt.OPT_CONTRACT_INFO).filter(opt.OPT_CONTRACT_INFO.underlying_symbol == code))
-    # print(df3)
-
-    # 获取期权日行情数据
-    # code = '10001313.XSHG'  # 此为期权合约代码
-    # n = 100
-    # df = opt.run_query(query(opt.OPT_DAILY_PRICE).filter(opt.OPT_DAILY_PRICE.code == code).limit(n))
 
 
 if __name__ == '__main__':
